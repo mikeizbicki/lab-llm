@@ -50,7 +50,7 @@ Many *package managers* have been introduced to "simplify" this problem.
 They include: pip, venv, pip-tools, pipenv, poetry, pdm, pyenv, pipx, uv, conda, mamba, conda-lock, and pixi.
 Of course, this hasn't led to simplifying the problem at all.
 
-<a href=https://xkcd.com/927/><img src=img/standards_2x.png /></a>
+<a href=https://xkcd.com/927/><img src=img/standards_2x.png width=600px /></a>
 
 The latest version of python has introduced the [*Python Enhancement Proposal* (PEP) 668](https://peps.python.org/pep-0668/),
 which forbids mixing of different types of package managers.
@@ -145,8 +145,9 @@ If everything works, you can now directly ask your llm questions on the command 
 $ llm 'why is bash useful for big data?'
 ```
 
-### Step 2: More Example use Cases
+### Step 2: Example use Cases
 
+Most people 
 The real power of `llm` comes from combining the tool with the POSIX shell.
 
 **Example 1:**
@@ -192,3 +193,19 @@ You are encouraged (but not required) to get API keys for these other models and
 > which can cost a lot of money.
 
 ## Submission
+
+[Laziness is one of the three virtues of a programmer](https://thethreevirtues.com/),
+and good programmers love automating their work.
+
+<img src=img/replace.jpg width=400px />
+
+Unfortunately, not all work can be automated.
+If you don't use AI correctly,
+it will actually INCREASE the amount of work you have to do.
+
+<img src=img/openai.jpg width=400px />
+
+Submit the following statement to sakai:
+
+> I promise to be lazy.
+> I promise to use `llm` to avoid as much stupid busy work as possible.
