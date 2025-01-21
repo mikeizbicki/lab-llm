@@ -1,4 +1,4 @@
-# llm lab
+# LLM Setup Instructions
 
 The purpose of this class is to teach you how to behave like a *real* programmer.
 Real programmers are allowed to use LLMs for everything they do,
@@ -192,13 +192,21 @@ You are encouraged (but not required) to get API keys for these other models and
 > It is very easy to use the `llm` command to output many tokens,
 > which can cost a lot of money.
 
-## Submission
+I use the following two aliases in my `.bashrc` file to make it easy for me to access the groq and claude models.
+```
+alias groq='llm -s "keep your response short, between 5-20 lines" -m groq-llama3.1-70b'
+alias claude='llm -s "keep your response short, between 5-20 lines" -m claude-3-5-sonnet-latest'
+```
 
-[Laziness is one of the three virtues of a programmer](https://thethreevirtues.com/),
-and good programmers love automating their work.
+## Parting Thoughts
+
+[Laziness is one of the three virtues of a programmer](https://thethreevirtues.com/).
+Programmers therefore love tools that automate their work.
+So go forth, and let the LLMs automate as much stupid busy work as possible!
 
 <img src=img/replace.jpg width=400px />
 
+<!--
 Unfortunately, not all work can be automated.
 If you don't use AI correctly,
 it will actually INCREASE the amount of work you have to do.
@@ -209,3 +217,4 @@ Submit the following statement to sakai:
 
 > I promise to be lazy.
 > I promise to use `llm` to avoid as much stupid busy work as possible.
+-->
