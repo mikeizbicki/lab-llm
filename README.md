@@ -147,7 +147,6 @@ $ llm 'why is bash useful for big data?'
 
 ### Step 2: Example use Cases
 
-Most people 
 The real power of `llm` comes from combining the tool with the POSIX shell.
 
 **Example 1:**
