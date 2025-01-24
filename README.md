@@ -164,6 +164,68 @@ $ llm 'write python code that prints the first 10 prime numbers; do not provide 
 $ python3 primes.py
 ```
 
+> **Note:**
+> LLMs are *non-deterministic*, which means that you can get different results everytime you run the program.
+> Sometimes, you might get invalid python code that contains special markdown formating like
+> ```
+>  ```python
+>  print([2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
+>  ```
+> ```
+> By tuning the prompt, you can make this undesired behavior less likely.
+> There are some examples of better (but longer) prompts below.
+
+The prompt above is a bit long.
+If writing valid python is something that you want to do regularly, you can create an *alias* in the shell.
+An alias is like a shortcut for a command.
+You can create one like so
+```
+$ alias llm-python='llm -s "do not provide any explanation or markdown formatting like \`\`\`python, only valid python code that can be run directly in python3"'
+```
+Now you can create python code by running
+```
+$ llm-python "print the first 10 prime numbers"
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+primes = []
+n = 2
+while len(primes) < 10:
+    if is_prime(n):
+        primes.append(n)
+    n += 1
+print(primes)
+```
+
+```
+$ llm-python "write a function that checks if a string is a palindrome; include doctests"
+def is_palindrome(s):
+    """
+    Checks if a string is a palindrome.
+
+    >>> is_palindrome("radar")
+    True
+    >>> is_palindrome("python")
+    False
+    >>> is_palindrome("")
+    True
+    >>> is_palindrome("aibohphobia")
+    True
+    >>> is_palindrome("hello")
+    False
+    """
+    return s == s[::-1]
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+```
+
 **Example 3:**
 You can embed the output of bash commands into your prompts using the standard command expansion notation `$( )`.
 The `uname -a` command prints extensive information about the currently running operating system.
