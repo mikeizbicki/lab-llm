@@ -161,7 +161,7 @@ $ cat venv/bin/activate | llm -s "Explain this code"
 We can use output redirection `>` to store the results of the `llm` command in a file.
 The command below creates a python file `primes.py` that computes the first 10 prime numbers.
 ```
-$ llm 'write python code that prints the first 10 prime numbers; do not provide any explanation, only valid python' > primes.py
+$ llm 'write python code that prints the first 10 prime numbers; do not provide any explanation, only valid python, do not write ```python' > primes.py
 $ python3 primes.py
 ```
 
