@@ -131,7 +131,7 @@ $ llm install llm-groq
 
 Now set the default model to a recent version of llama.
 ```
-$ llm models default groq-llama3.1-70b
+$ llm models default groq-llama3.3-70b
 ```
 
 Next, you need to [create an API key with groq.com](https://console.groq.com/keys).
