@@ -174,13 +174,15 @@ $ python3 primes.py
 > ````
 > By tuning the prompt, you can make this undesired behavior less likely.
 > There are some examples of better (but longer) prompts below.
+>
+> `llm` also supports the `-x` flag which extracts the information from the first markdown code block, if present.
 
 The prompt above is a bit long.
 If writing valid python is something that you want to do regularly, you can create an *alias* in the shell.
 An alias is like a shortcut for a command.
 You can create one like so
 ```
-$ alias llm-python='llm -s "do not provide any explanation or markdown formatting like \`\`\`python, only valid python code that can be run directly in python3"'
+$ alias llm-python='llm -x -s "do not provide any explanation or markdown formatting like \`\`\`python, only valid python code that can be run directly in python3"'
 ```
 Now you can create python code by running
 ```
@@ -239,7 +241,7 @@ You are encouraged (but not required) to [read the documentation](https://llm.da
 which contains many more examples.
 We will also be seeing more examples throughout the course.
 
-### Step 3 (optional): Adding more LLMs
+### Step 3 (optional, but highly encouraged): Adding more LLMs
 
 I have my `llm` configured to use groq by default.
 I have also registered Claude, OpenAI, and Gemini.
