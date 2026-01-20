@@ -167,11 +167,9 @@ $ python3 primes.py
 > **Note:**
 > LLMs are *non-deterministic*, which means that you can get different results everytime you run the program.
 > Sometimes, you might get invalid python code that contains special markdown formating like
-> ```
->  ```python
->  print([2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
->  ```
-> ```
+>       ```python
+>       print([2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
+>       ```
 > By tuning the prompt, you can make this undesired behavior less likely.
 > There are some examples of better (but longer) prompts below.
 
