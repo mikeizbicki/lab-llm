@@ -52,18 +52,19 @@ Of course, this hasn't led to simplifying the problem at all.
 
 <a href=https://xkcd.com/927/><img src=img/standards_2x.png width=600px /></a>
 
-The latest version of python has introduced the [*Python Enhancement Proposal* (PEP) 668](https://peps.python.org/pep-0668/),
+The latest version of python has introduced [*Python Enhancement Proposal* (PEP) 668](https://peps.python.org/pep-0668/),
 which forbids mixing of different types of package managers.
 The lambda server is an Ubuntu linux system, and so uses the `apt-get` package manager for its system-wide packages.
 In order to install packages locally, you will have to use the `venv` package manager.
-This is the standard python package manager that you should generally use for python-only projects.
+`venv` was introduced in 2011 with [PEP 405](https://peps.python.org/pep-0405/),
+and is the standard python package manager for python-only projects.
 
 To create a new virtual environment (venv), run the command:
 ```
 $ cd                        # ensure you're in home folder
 $ python3 -m venv venv      # create the venv
 ```
-The `-m venv` flag tells `python3` to run the `venv` module.
+The `-m venv` parameter tells `python3` to run the `venv` module.
 The last `venv` is the name of the folder that will be created to hold the installed packages.
 
 After running this command, you should notice that a new folder called `venv` has been created.
@@ -84,7 +85,10 @@ Sourcing a file runs the commands in the bash session as if they were copy/paste
 > Because sourcing a file is a common task, the `source` command has been given the synonym `.`.
 
 If everything works correctly, then your prompt will change to look like `(venv) $`.
-It is common not to write the `(venv)` portion in tutorials for space reasons.
+
+> **NOTE:**
+> Prompts can vary widely based on user preferences and the history of commands they have run.
+> It is common not to write `(venv)` or anything else before the `$` due to this variability and to save space.
 
 Now you can install the llm package with the command
 ```
