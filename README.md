@@ -138,7 +138,7 @@ Install the groq plugin.
 $ llm install llm-groq
 ```
 
-Now set the default model to a recent version of llama.
+Now set the default model to their best free-tier model.
 ```
 $ llm models default groq-llama-3.3-70b
 ```
@@ -250,25 +250,16 @@ You are encouraged (but not required) to [read the documentation](https://llm.da
 which contains many more examples.
 We will also be seeing more examples throughout the course.
 
-### Step 3 (optional, but highly encouraged): Adding more LLMs
+### Step 3: Adding more LLMs
 
-I have my `llm` configured to use groq by default.
-I have also registered Claude, OpenAI, and Gemini.
-Anthropic's Claude model has a great reputation as the best coding assistant,
-and I occasionally use it to help with coding tasks.
-I mostly use OpenAI/Gemini for testing purposes.
-
-You are encouraged (but not required) to get API keys for these other models and try them out.
+`llm` can be used with any LLM provider (e.g. OpenAI, Anthropic, Gemini, Deepseek, Qwen).
+You are encouraged (but not required) to add more LLM providers and models to your `llm` command.
+I like the service <https://openrouter.ai/> because it allows easily using any model with only one payment endpoint.
+The corresponding python library is `llm-openrouter` and you can find setup instructions at <https://github.com/simonw/llm-openrouter>.
 
 > **WARNING:**
 > It is very easy to use the `llm` command to output many tokens,
 > which can cost a lot of money.
-
-I use the following two aliases in my `.bashrc` file to make it easy for me to access the groq and claude models.
-```
-alias groq='llm -s "keep your response short, between 5-20 lines" -m groq-llama3.1-70b'
-alias claude='llm -s "keep your response short, between 5-20 lines" -m claude-3-5-sonnet-latest'
-```
 
 ## Parting Thoughts
 
@@ -284,9 +275,4 @@ If you don't use AI correctly,
 it will actually INCREASE the amount of work you have to do.
 
 <img src=img/openai.jpg width=400px />
-
-Submit the following statement to sakai:
-
-> I promise to be lazy.
-> I promise to use `llm` to avoid as much stupid busy work as possible.
 -->
