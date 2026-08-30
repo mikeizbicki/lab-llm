@@ -83,6 +83,11 @@ Sourcing a file runs the commands in the bash session as if they were copy/paste
 > $ . venv/bin/activate
 > ```
 > Because sourcing a file is a common task, the `source` command has been given the synonym `.`.
+>
+> > **DOUBLE NOTE:**
+> > Observe the punctuation of the periods above---there are two dots, one with a grayed background and one with a normal background.
+> > At this point, you should understand both the *syntax* of how to create this effect (using single backticks in markdown to denote inline code) and the *semantics* of what tthis effect means (the dot inside of the backticks is literal code that can be executed).
+> > Programmers constantly use weird symbols when coding, and correct use of markdown is needed to ensure that others can properly read and interpret what we write.
 
 If everything works correctly, then your prompt will change to look like `(venv) $`.
 
