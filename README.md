@@ -323,7 +323,8 @@ We will also be seeing more examples throughout the course.
 `llm` can be used with any LLM provider (e.g. OpenAI, Anthropic, Gemini, Deepseek, Qwen).
 You are encouraged (but not required) to add more LLM providers and models to your `llm` command.
 I like the service <https://openrouter.ai/> because it allows easily using any model with only one payment endpoint.
-The corresponding python library is `llm-openrouter` and you can find setup instructions at <https://github.com/simonw/llm-openrouter>.
+There is a plugin `llm-openrouter` that automates the addition of hundreds of these models to your system,
+and you can find setup instructions at <https://github.com/simonw/llm-openrouter>.
 
 > **NOTE:**
 > There are no restrictions on what models/APIs you are allowed to use in this class.
@@ -331,8 +332,8 @@ The corresponding python library is `llm-openrouter` and you can find setup inst
 > Anything you can do with the `llm` command is 100% allowed.
 
 > **WARNING:**
-> It is very easy to use the `llm` command to output many tokens,
-> which can cost a lot of money.
+> At various times in this class you will have to put the `llm` command inside of for loops.
+> It is very easy to generate large bills using these paid APIs.
 
 ## Parting Thoughts
 
