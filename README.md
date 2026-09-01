@@ -1,19 +1,26 @@
 # LLM Setup Instructions
 
-The purpose of this class is to teach you how to behave like a *real* programmer.
-Real programmers are allowed to use LLMs for everything they do,
+The purpose of this class is to make you a highly productive programmer ready for industry.
+Industry programmers are allowed to use LLMs for everything they do,
 and so you are also allowed to use LLMs for everything you do in this course.
-This lab will setup your environment for using LLMs effectively.
 
 <img src=img/oprah.png width=300px />
+
+We will be setting up the [llm](https://github.com/simonw/llm) tool developed by [Simon Willison](https://simonwillison.net/about/).
+This is a popular [CLI tool](https://en.wikipedia.org/wiki/Command-line_interface) for working with llms.
+It supports the latest models (like Fable 5.1, which was released 1 September 2026) and all model providers (e.g. OpenAI, Anthropic, Google, Deepseek, Qwen) with a consistent interface.
+
+> **RECALL:**
+> The technology policy for this class forbids you from using web-based tools like <https://chatgpt.com>.
+> That is because these "user friendly" AI tools are less powerful than the tools working programmers use.
+> In this class, you are only allowed to use the more powerful tools that we cover in class.
+> This will encourage you to develop good habits that will make you more productive in the long run.
 
 ## Instructions
 
 ### Step 0: Installation
 
-We will be using the [llm](https://github.com/simonw/llm) developed by [Simon Wilson](https://simonwillison.net/about/).
-This is a popular [CLI tool](https://en.wikipedia.org/wiki/Command-line_interface) for working with llms.
-The tool is written in python, and so can be installed with the command
+`llm` is written in python, and so can be installed with the command
 ```
 $ pip3 install llm
 ```
@@ -104,148 +111,208 @@ $ pip3 install llm
 
 The llm package supports many different models and hosting providers.
 In this section, we will walk through the steps of setting up <https://groq.com/>.
-Groq is free to use, about 20x faster than OpenAI, and supports Meta's latest llama models.
 
 > **NOTE:**
->
-> Every model has strengths and weaknesses,
-> and there are many benchmarks comparing their performance on different tasks.
-> For example: <https://livebench.ai/>.
-> The largest llama models are competitive with OpenAI on most tasks, and superior on image tasks.
-> Claude tends to be the best on coding tasks.
-> Personally, I use groq (with llama) as my default llm due to its speed,
-> and then if I need better coding responses, I'll switch to Claude.
-> For the purposes of this class, you will do fine if you stay with the free groq provider,
-> but you are welcome to use whatever models you would like.
-> If you find that some models are better than others for certain tasks in this class, I would love to hear your feedback!
-
-> **NOTE:**
-> 
-> These instructions are for <https://groq.com>.
-> This is a hardware company that has developed new (non-GPU/non-NVIDIA based) silicon for very fast LLM inference.
-> Groq is different from [Grok](https://x.ai/),
-> which is Elon Musk's LLM company.
-> Grok is a new model and designed to compete directly with OpenAI/Meta/Anthropic/Google.
+> Groq (with a q) is a hardware company that has developed new silicon for very fast LLM inference.
+> [Grok](https://x.ai/) (with a k) is Elon Musk's LLM company.
 > Groq is a hardware company, and so they are competing with NVIDIA.
->
-> Groq has existed as a company for >10 years.
-> Grok has existed for ~1 year.
-> Musk might be a great businessman,
-> but he sucks at naming things.
+> Grok is a software company competing with OpenAI/Meta/Anthropic/Google.
 
-Install the groq plugin.
-```
-$ llm install llm-groq
-```
-
-Now set the default model to their best free-tier model.
-```
-$ llm models default groq-llama-3.3-70b
-```
-
-Next, you need to [create an API key with groq.com](https://console.groq.com/keys).
-Once you've done that, register the API key with llm.
+First, you need to [create an API key with groq.com](https://console.groq.com/keys).
+Groq has a nice free tier, so there is no need to pay.
+Then register the API key with llm.
 ```
 $ llm keys set groq
 ```
 
-If everything works, you can now directly ask your llm questions on the command line with a command like
+Groq supports many different models, but we will use Qwen3.8.
+This model was released as open weight on 16 August by the Chinese company Alibaba,
+and is competitive with SOTA models from OpenAI/Anthropic at coding tasks.
+
+<img src=img/qwen.png width=600px />
+
+To register the model with llm, edit the file `~/.config/io.datasette.llm/extra-openai-models.yaml` by running the command:
 ```
-$ llm 'why is bash useful for big data?'
+$ cat >> ~/.config/io.datasette.llm/extra-openai-models.yaml <<'EOF'
+- model_id: qwen
+  model_name: qwen/qwen3.8-27b
+  api_key_name: groq
+  api_base: https://api.groq.com/openai/v1
+EOF
 ```
+> **NOTE:**
+> Observe that the output redirection above will append the contents of the heredoc to the end of the config.
+> Commands like this are common in tutorials.
+>
+> If you we were not using the shell,
+> modifying these condif files would require more complicated instructions that are not easy to automate---something like "add the following text to the end of the file"---and you would have had to click a bunch of buttons in VSCode to make that happen.
+> With the shell, I give you a one line command to copy/paste that does absolutely everything.
+>
+> The shell may be uncomfortable at first,
+> but once you are used to the shell it becomes much faster and easier because of the ability to automate.
+> LLMs are especially good at giving you shell commands that you can just copy/paste to get your desired effects.
+
+<!--
+```
+$ llm openai endpoint https://api.groq.com/openai/v1 -m qwen/qwen3.8-27b --key groq
+```
+The key parts of the command are
+1. `openai endpoint https://api.groq.com/openai/v1 --key groq` tells `llm` to use the groq api endpoint with the key you set above.
+2. `-m qwen/qwen3.8-27b` sets the model that the groq endpoint will serve.
+    This model was released in 16 August and is quite good at coding tasks.
+    You can find a full list of supported models at <https://console.groq.com/docs/models>.
+3. `-s 'answer like a pirate in 2 pages'` sets the *system prompt* for the llm query.
+    The system prompt is used to adjust the style of the response.
+4. The last part `'why is bash important for data analysts?'` is the prompt for the model, which is what the model will actually respond to.
+At this point, you should be able to run the command above and get an LLM-generated output about why bash is important.
+
+The command above, however, is obviously unwieldy.
+We can use *bash aliases* to make the command more ergonomic.
+An alias is just a short name for a longer command.
+Create the alias `qwen` with the command
+```
+$ alias qwen="llm openai endpoint https://api.groq.com/openai/v1 -m qwen/qwen3.8-27b --key groq -s 'respond in 1-20 sentences as efficiently as possible'"
+```
+(Notice that I changed the system prompt between the first command and the alias above.)
+-->
+
+Now, we can ask qwen questions with a command like
+```
+$ llm -m qwen 'why is bash important for data analysts?'
+```
+Notice that the results being returned are much faster than the results if you were to use the <https://chatgpt.com> interface because groq has such fast inference hardware.
+
+Also notice that the response is long!
+Much longer than I want to read!
+
+You can control the length and style of the response by setting the *system prompt* with the `-s` argument:
+```
+$ llm -m qwen -s 'answer in 1-2 sentences' 'why is bash important for data analysts?'
+```
+Explicitly setting the model and system prompt everytime we call the `llm` command is a bit awkward.
+In bash, we can create shortcuts for long commands using the `alias` keyword.
+Run the command
+```
+$ alias qwen="llm -m qwen -s 'answer in 1-2 sentences'"
+```
+Now we can ask the qwen model questions like
+```
+$ qwen 'why is bash important for data analysts?'
+```
+At this point we have a convenient command line tool for working with LLMs.
+Our tool is already more powerful than the web interfaces because:
+1. it is faster, and
+2. we can control the formatting/style by adjusting the system prompt.
+In the next section, we will see how to combine our `qwen` command with standard bash features to get even more power.
 
 ### Step 2: Example use Cases
 
 The real power of `llm` comes from combining the tool with the POSIX shell.
+In this section, we will see some basic examples.
 
 **Example 1:**
+
 We can use the pipe operator `|` to use `llm` to explain the output of a previous command.
-The command below pipes the contents of the `venv/bin/activate` file into `llm`, and asks for an explanation of what the code does.
+For example, the command `uname -a` shows a compressed version of the system information.
+You can get a more beginner friendly explanation by piping this output into qwen with a modified system prompt:
 ```
-$ cat venv/bin/activate | llm -s "Explain this code"
+$ uname -a | qwen -s 'explain the output of the command'
 ```
 
 **Example 2:**
-We can use output redirection `>` to store the results of the `llm` command in a file.
-The command below creates a python file `primes.py` that computes the first 10 prime numbers.
+
+One downside of using the `-s` operator is that it overwrites our default system prompt, and we got very verbose output.
+Another way to create prompts is via heredocs and command substitution.
+The command below is similar to the command above but reuses are standard system prompt.
 ```
-$ llm 'write python code that prints the first 10 prime numbers; do not provide any explanation, only valid python' > primes.py
-$ python3 primes.py
+$ qwen <<EOF
+Explain the output of the command:
+
+$(uname -a)
+EOF
 ```
 
-> **Note:**
-> LLMs are *non-deterministic*, which means that you can get different results everytime you run the program.
-> Sometimes, you might get invalid python code that contains special markdown formating like
-> ````
-> ```python
-> print([2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
-> ```
-> ````
-> By tuning the prompt, you can make this undesired behavior less likely.
-> There are some examples of better (but longer) prompts below.
->
-> `llm` also supports the `-x` flag which extracts the information from the first markdown code block, if present.
+** Example 3:**
 
-The prompt above is a bit long.
-If writing valid python is something that you want to do regularly, you can create an *alias* in the shell.
-An alias is like a shortcut for a command.
-You can create one like so
+It is common to want to ask follow up questions to llms.
+For example, maybe we want to know if our system has any security vulnerabilities?
+(Recall that you can get extra credit by hacking the lambda server---it does in fact have some unpatched vulnerabilities.)
+We can use the `-c` flag to continue our conversation from the previous command to ask these followup questions.
 ```
-$ alias llm-python='llm -x -s "do not provide any explanation or markdown formatting like \`\`\`python, only valid python code that can be run directly in python3"'
+$ qwen -c 'are there any known security vulnerabilities?'
 ```
-Now you can create python code by running
+Asking thoughtful followup questions will lead the motivated student to find a way to hack the lambda server and claim extra credit.
+
+** Example 4:**
+
+Another common usecase for `llm` is to ask questions about a file.
+For example, we've previously "sourced" the `venv/bin/activate` file but we haven't talked at all about how it works.
+If you're curious, you can ask qwen with a command like:
 ```
-$ llm-python "print the first 10 prime numbers"
-def is_prime(n):
-    if n < 2:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
+$ qwen <<EOF
+How does this file work?
+
+$(cat venv/bin/activate)
+EOF
+```
+And we can ask followup questions using the `-c` flag again like
+```
+$ qwen -c 'does the file have any bugs that need fixing?'
+```
+Web interfaces have much more friction to getting files into the LLM "context window",
+and are consequently much harder to use.
+
+**Example 5:**
+
+Another common use case for llms is to write code for us.
+For example:
+```
+$ qwen 'write a python program that prints the first 10 prime numbers'
+```
+We can easily use output redirection `>` to store the results of the `llm` command in a file.
+Notice that when printing code, qwen (like most LLMs) typically puts the code inside of a markdown code block.
+The output I got from running the command above looked like
+
+    ```python
+    def is_prime(n):
+        if n < 2:
             return False
-    return True
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
 
-primes = []
-n = 2
-while len(primes) < 10:
-    if is_prime(n):
-        primes.append(n)
-    n += 1
-print(primes)
+    primes = []
+    num = 2
+    while len(primes) < 10:
+        if is_prime(num):
+            primes.append(num)
+        num += 1
+
+    print(primes)
+    ```
+
+> **NOTE:**
+> Your output will be slightly different because LLMs are *non-deterministic*.
+
+> **NOTE:**
+> LLMs use markdown formatting because they are trained on the internet,
+> and (good!) programmers always embed their code inside of markdown codeblocks like this when writing on the internet.
+
+When asking an LLM to generate code, it is often the case that we want to remove this extra markdown formatting in order to generate valid python code.
+The `-x` flag removes the markdown formatting for us:
 ```
-
+$ qwen -x 'write a python program that prints the first 10 prime numbers'
 ```
-$ llm-python "write a function that checks if a string is a palindrome; include doctests"
-def is_palindrome(s):
-    """
-    Checks if a string is a palindrome.
-
-    >>> is_palindrome("radar")
-    True
-    >>> is_palindrome("python")
-    False
-    >>> is_palindrome("")
-    True
-    >>> is_palindrome("aibohphobia")
-    True
-    >>> is_palindrome("hello")
-    False
-    """
-    return s == s[::-1]
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+Now, we can use standard output redirection to save these files for us automatically.
 ```
-
-**Example 3:**
-You can embed the output of bash commands into your prompts using the standard command expansion notation `$( )`.
-The `uname -a` command prints extensive information about the currently running operating system.
-The command below uses `llm` to explain this information
-```
-$ llm "tell me about my system: $(uname -a)"
+$ qwen > primes.py -x 'write a python program that prints the first 10 prime numbers'
+$ python3 primes.py
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 ```
 
 **More examples:**
+
 You are encouraged (but not required) to [read the documentation](https://llm.datasette.io/en/stable/usage.html),
 which contains many more examples.
 We will also be seeing more examples throughout the course.
