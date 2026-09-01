@@ -129,7 +129,7 @@ Groq supports many different models, but we will use Qwen3.8.
 This model was released as open weight on 16 August by the Chinese company Alibaba,
 and is competitive with SOTA models from OpenAI/Anthropic at coding tasks.
 
-<img src=img/qwen.png width=600px />
+<img src=img/qwen.png width=400px />
 
 To register the model with llm, edit the file `~/.config/io.datasette.llm/extra-openai-models.yaml` by running the command:
 ```
