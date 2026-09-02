@@ -365,6 +365,9 @@ The output I got from running the command above looked like
 > **NOTE:**
 > LLMs use markdown formatting because they are trained on the internet,
 > and (good!) programmers always embed their code inside of markdown codeblocks like this when writing on the internet.
+> You absolutely must master markdown in order to be able to use LLMs effectively and understand their output.
+>
+> <img src=img/markdown-everywhere.jpg width=400px />
 
 When asking an LLM to generate code, it is often the case that we want to remove this extra markdown formatting in order to generate valid python code.
 The `-x` flag removes the markdown formatting for us:
