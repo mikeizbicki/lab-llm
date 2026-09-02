@@ -359,6 +359,10 @@ The output I got from running the command above looked like
 > Your output will be slightly different because LLMs are *non-deterministic*.
 
 > **NOTE:**
+> Notice that there are triple backticks ` ``` ` *inside the code block above!
+> These backticks are not part of the code that generated the codeblock, but part of the literal output of the program, and so inside of the codeblock.
+
+> **NOTE:**
 > LLMs use markdown formatting because they are trained on the internet,
 > and (good!) programmers always embed their code inside of markdown codeblocks like this when writing on the internet.
 
