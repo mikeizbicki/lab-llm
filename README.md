@@ -255,7 +255,7 @@ and then bash will run these commands everytime you login automatically.
 > ```
 > You should see a number of hidden files displayed, including the `.bashrc` file.
 
-> **TASK:**
+> **TASK YOU MUST COMPLETE:**
 >
 > Modify the `.bashrc` file to include the alias for the `qwen` command:
 > ```
@@ -264,6 +264,7 @@ and then bash will run these commands everytime you login automatically.
 > Notice that there is no `$` at the beginning of the line above;
 > that is because this is not a terminal command that you should be typing into the shell, but the literal characters that you will be adding to a file that just happens to also be a valid shell command.
 > Subtle grammar points like this are important!
+> As a reader, they give you clues that help you check your understanding of technical content; as a writer, they signal competence to your readers and will make people want to hire you.
 >
 > You may use vim or `>>` to add the alias, whatever is easier.
 
