@@ -203,7 +203,69 @@ At this point we have a convenient command line tool for working with LLMs.
 Our tool is already more powerful than the web interfaces because:
 1. it is faster, and
 2. we can control the formatting/style by adjusting the system prompt.
-In the next section, we will see how to combine our `qwen` command with standard bash features to get even more power.
+In the Section 2 below, we will see how to combine our `qwen` command with standard bash features to get even more power.
+But first, we need to discuss how to "save" these changes to our system.
+
+#### Step 1a: .bashrc
+
+One of the important skills to learn when using the shell is what commands are *persistent* (their effects will last after you logout and log back in) and what commands are *ephemeral* (their effects will go away after you log out).
+One of the key principles of shell programming is that **modifying files is persistent, everything else is ephemeral**.
+Based on this principle, we can determine which of our commands have been persistent and which ephemeral.
+
+First, log out of the lambda server by running
+```
+$ exit
+```
+
+<img src=img/pooh.jpg width=300px />
+
+Then log back into the lambda server.
+
+Recall that we registered the `qwen` model with `llm` by using the bash append operator `>>` to modify the file `~/.config/io.datasette.llm/extra-openai-models.yaml`.
+Because this command effected a file, the change was persistent, and we still have access to qwen.
+So the following command should work:
+```
+$ llm -m qwen 'what is qwen?'
+```
+
+But we also said commands like this were awkward to run, especially with a custom system prompt, and so we created a bash alias called `qwen`.
+The `alias` command in bash does not modify any files, and so is not persistent.
+The following command should fail.
+```
+$ qwen 'what is bashrc?'
+bash: qwen: command not found
+```
+To make these commands persistent, we need to write them to a file.
+A common way to do this is to add these ephemeral commands to your `~/.bashrc` file,
+and then bash will run these commands everytime you login automatically.
+
+> **NOTE:**
+> Recall that `~` is your home folder.
+> So `~/.bashrc` is a file named `.bashrc` located in your home folder.
+> If you run
+> ```
+> $ cd ~
+> $ ls
+> ```
+> you will not see a file called `.bashrc`.
+> `.bashrc` is a *hidden file* because it starts with a `.` and is not displayed by default.
+> To display hidden files, add the `-a` flag to the `ls` command:
+> ```
+> $ ls -a
+> ```
+> You should see a number of hidden files displayed, including the `.bashrc` file.
+
+> **TASK:**
+>
+> Modify the `.bashrc` file to include the alias for the `qwen` command:
+> ```
+> alias qwen="llm openai endpoint https://api.groq.com/openai/v1 -m qwen/qwen3.8-27b --key groq -s 'respond in 1-20 sentences as efficiently as possible'"
+> ```
+> Notice that there is no `$` at the beginning of the line above;
+> that is because this is not a terminal command that you should be typing into the shell, but the literal characters that you will be adding to a file that just happens to also be a valid shell command.
+> Subtle grammar points like this are important!
+>
+> You may use vim or `>>` to add the alias, whatever is easier.
 
 ### Step 2: Example use Cases
 
