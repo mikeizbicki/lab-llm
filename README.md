@@ -221,21 +221,41 @@ $ exit
 <img src=img/pooh.jpg width=300px />
 
 Then log back into the lambda server.
-
-Recall that we registered the `qwen` model with `llm` by using the bash append operator `>>` to modify the file `~/.config/io.datasette.llm/extra-openai-models.yaml`.
-Because this command effected a file, the change was persistent, and we still have access to qwen.
-So the following command should work:
+The following command should fail.
+```
+$ llm -m qwen 'what is qwen?'
+bash: llm: command not found
+```
+That is because sourcing the venv is an ephemeral action, and we must do it again:
+```
+$ source ~/venv/bin/activate
+```
+Now running the command
 ```
 $ llm -m qwen 'what is qwen?'
 ```
+should work.
+
+Recall that we registered the `qwen` model with `llm` by using the bash append operator `>>` to modify the file `~/.config/io.datasette.llm/extra-openai-models.yaml`.
+Because this command effected a file, the change was persistent, and we still have access to qwen from within the `llm` command without readjusting the settings.
 
 But we also said commands like this were awkward to run, especially with a custom system prompt, and so we created a bash alias called `qwen`.
 The `alias` command in bash does not modify any files, and so is not persistent.
 The following command should fail.
 ```
-$ qwen 'what is bashrc?'
+$ qwen 'what is qwen?'
 bash: qwen: command not found
 ```
+We can rerung the alias command
+```
+$ alias qwen="llm -m qwen -s 'answer in 1-2 sentences'"
+```
+and now our `qwen` command should succeed
+```
+$ qwen 'what is qwen?'
+```
+
+It is obviously annoying to have to rerun these ephemeral commands, and so we would like a way to make them persistent.
 To make these commands persistent, we need to write them to a file.
 A common way to do this is to add these ephemeral commands to your `~/.bashrc` file,
 and then bash will run these commands everytime you login automatically.
@@ -256,8 +276,13 @@ and then bash will run these commands everytime you login automatically.
 > ```
 > You should see a number of hidden files displayed, including the `.bashrc` file.
 
+We can make sourcing the venv persistent with a command like:
+```
+$ echo 'source ~/venv/bin/activate' >> ~/.bashrc
+```
+Now, when we log out and log back in, we will automaticaly be in the venv.
+
 > **TASK YOU MUST COMPLETE:**
->
 > Modify the `.bashrc` file to include the alias for the `qwen` command:
 > ```
 > alias qwen="llm -m qwen -s 'answer in 1-2 sentences'"
@@ -268,6 +293,7 @@ and then bash will run these commands everytime you login automatically.
 > As a reader, they give you clues that help you check your understanding of technical content; as a writer, they signal competence to your readers and will make people want to hire you.
 >
 > You may use vim or `>>` to add the alias, whatever is easier.
+> If you use `>>`, you will need to be careful with your quotation marks.
 
 ### Step 2: Example use Cases
 
