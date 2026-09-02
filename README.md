@@ -259,7 +259,7 @@ and then bash will run these commands everytime you login automatically.
 >
 > Modify the `.bashrc` file to include the alias for the `qwen` command:
 > ```
-> alias qwen="llm openai endpoint https://api.groq.com/openai/v1 -m qwen/qwen3.8-27b --key groq -s 'respond in 1-20 sentences as efficiently as possible'"
+> alias qwen="llm -m qwen -s 'answer in 1-2 sentences'"
 > ```
 > Notice that there is no `$` at the beginning of the line above;
 > that is because this is not a terminal command that you should be typing into the shell, but the literal characters that you will be adding to a file that just happens to also be a valid shell command.
@@ -397,6 +397,26 @@ and you can find setup instructions at <https://github.com/simonw/llm-openrouter
 > **WARNING:**
 > At various times in this class you will have to put the `llm` command inside of for loops.
 > It is very easy to generate large bills using these paid APIs.
+
+## Submission
+
+Your submission will have you practice both github and markdown.
+
+You must:
+
+1. Fork this repo.
+
+1. Modify the code block below so that it contains the output of the command below
+    ```
+    $ qwen 'what is .bashrc?'
+    <add_your_programs_response_here>
+    ```
+
+1. Push your changes to github.
+
+1. Submit a link of the modified repo to canvas.
+
+    You will only get credit if all of these steps have been completed correctly.
 
 ## Parting Thoughts
 
