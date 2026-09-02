@@ -3,6 +3,7 @@
 The purpose of this class is to make you a highly productive programmer ready for industry.
 Industry programmers are allowed to use LLMs for everything they do,
 and so you are also allowed to use LLMs for everything you do in this course.
+The purpose of this lab is to teach you the basics of using LLMs productively from the command line.
 
 <img src=img/oprah.png width=300px />
 
