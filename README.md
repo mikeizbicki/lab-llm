@@ -418,6 +418,11 @@ You must:
 
     You will only get credit if all of these steps have been completed correctly.
 
+> **NOTE:**
+> It is okay if the git steps above take you a long time to figure out at this point in the class.
+> But by the end of the class, you will be able to do all of these steps in <30 seconds.
+> These are very natural tasks that working programmers perform many times a day.
+
 ## Parting Thoughts
 
 [Laziness is one of the three virtues of a programmer](https://thethreevirtues.com/).
