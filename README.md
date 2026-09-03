@@ -94,7 +94,7 @@ Sourcing a file runs the commands in the bash session as if they were copy/paste
 >
 > > **DOUBLE NOTE:**
 > > Observe the punctuation of the periods above---there are two dots, one with a grayed background and one with a normal background.
-> > At this point, you should understand both the *syntax* of how to create this effect (using single backticks in markdown to denote inline code) and the *semantics* of what tthis effect means (the dot inside of the backticks is literal code that can be executed).
+> > At this point, you should understand both the *syntax* of how to create this effect (using single backticks in markdown to denote inline code) and the *semantics* of what this effect means (the dot inside of the backticks is literal code that can be executed).
 > > Programmers constantly use weird symbols when coding, and correct use of markdown is needed to ensure that others can properly read and interpret what we write.
 
 If everything works correctly, then your prompt will change to look like `(venv) $`.
@@ -145,8 +145,8 @@ EOF
 > Observe that the output redirection above will append the contents of the heredoc to the end of the config.
 > Commands like this are common in tutorials.
 >
-> If you we were not using the shell,
-> modifying these condif files would require more complicated instructions that are not easy to automate---something like "add the following text to the end of the file"---and you would have had to click a bunch of buttons in VSCode to make that happen.
+> If we were not using the shell,
+> modifying these config files would require more complicated instructions that are not easy to automate---something like "add the following text to the end of the file"---and you would have had to click a bunch of buttons in VSCode to make that happen.
 > With the shell, I give you a one line command to copy/paste that does absolutely everything.
 >
 > The shell may be uncomfortable at first,
@@ -237,7 +237,7 @@ $ llm -m qwen 'what is qwen?'
 should work.
 
 Recall that we registered the `qwen` model with `llm` by using the bash append operator `>>` to modify the file `~/.config/io.datasette.llm/extra-openai-models.yaml`.
-Because this command effected a file, the change was persistent, and we still have access to qwen from within the `llm` command without readjusting the settings.
+Because this command affected a file, the change was persistent, and we still have access to qwen from within the `llm` command without readjusting the settings.
 
 But we also said commands like this were awkward to run, especially with a custom system prompt, and so we created a bash alias called `qwen`.
 The `alias` command in bash does not modify any files, and so is not persistent.
@@ -246,7 +246,7 @@ The following command should fail.
 $ qwen 'what is qwen?'
 bash: qwen: command not found
 ```
-We can rerung the alias command
+We can rerun the alias command
 ```
 $ alias qwen="llm -m qwen -s 'answer in 1-2 sentences'"
 ```
@@ -322,7 +322,7 @@ $(uname -a)
 EOF
 ```
 
-** Example 3:**
+**Example 3:**
 
 It is common to want to ask follow up questions to llms.
 For example, maybe we want to know if our system has any security vulnerabilities?
@@ -333,7 +333,7 @@ $ qwen -c 'are there any known security vulnerabilities?'
 ```
 Asking thoughtful followup questions will lead the motivated student to find a way to hack the lambda server and claim extra credit.
 
-** Example 4:**
+**Example 4:**
 
 Another common usecase for `llm` is to ask questions about a file.
 For example, we've previously "sourced" the `venv/bin/activate` file but we haven't talked at all about how it works.
