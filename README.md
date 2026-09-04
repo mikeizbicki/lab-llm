@@ -443,7 +443,7 @@ You must:
 1. Modify the code block below so that it contains the output of the command below
     ```
     $ qwen 'what is .bashrc?'
-    <add_your_programs_response_here>
+    <The `.bashrc` file is a BASH shell startup file that contains commands and settings, such as aliases and environment variables, which are automatically executed every time an interactive non-login Bash shell is opened in your terminal.>
     ```
 
 1. Push your changes to github.
