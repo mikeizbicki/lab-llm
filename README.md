@@ -50,7 +50,7 @@ note: If you believe this is a mistake, please contact your Python installation 
 hint: See PEP 668 for the detailed specification.
 ```
 
-Unfortunately, installing programs in python in [notoriously difficult](https://nielscautaerts.xyz/python-dependency-management-is-a-dumpster-fire.html).
+Unfortunately, installing programs in python is [notoriously difficult](https://nielscautaerts.xyz/python-dependency-management-is-a-dumpster-fire.html).
 
 <img src=img/money.jpg width=300px />
 
@@ -313,7 +313,7 @@ $ uname -a | qwen -s 'explain the output of the command'
 
 One downside of using the `-s` operator is that it overwrites our default system prompt, and we got very verbose output.
 Another way to create prompts is via heredocs and command substitution.
-The command below is similar to the command above but reuses are standard system prompt.
+The command below is similar to the command above but reuses our standard system prompt.
 ```
 $ qwen <<EOF
 Explain the output of the command:
