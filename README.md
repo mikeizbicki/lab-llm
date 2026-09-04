@@ -443,7 +443,7 @@ You must:
 1. Modify the code block below so that it contains the output of the command below
     ```
     $ qwen 'what is .bashrc?'
-    <add_your_programs_response_here>
+    <The `.bashrc` file is a configuration script for the Bash shell that is automatically executed to define environment variables, aliases, and other shell settings specifically for interactive non-login shells. It is typically located in a user's home directory and is read every time a new terminal session starts.>
     ```
 
 1. Push your changes to github.
